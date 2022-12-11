@@ -2,6 +2,7 @@
     <div class="container">
         <div class="content">
             <p>Informacion Producto</p>
+            <p>detalles: {{ findDetails(id) }}</p>
         </div>
     </div>
 
@@ -9,15 +10,24 @@
 </template>
 
 <script>
-export default{
+
+export default {
     name: 'InformacionProducto',
-    data(){
-        return{
+    props: {
+        id: Number,
+
+    },
+    data() {
+        return {
 
         };
     },
-    methods:{
-
+    methods: {
+        findDetails(id2) {
+            //let array=[]
+            let item = this.$store.productos.productos.find(item => item.id === id2);
+            return item.detalles
+        }
     },
     computed: {
 
@@ -28,11 +38,13 @@ export default{
 
 <style scoped>
 a {
-  color: #42b983;
+    color: #42b983;
 }
+
 label {
-  margin-left: 0.5em !important;
+    margin-left: 0.5em !important;
 }
+
 .content {
     height: 100%;
     width: 50%;
@@ -41,5 +53,6 @@ label {
     color: black;
     margin-left: 25%;
     margin-bottom: 50px;
+    padding-bottom: 50px;
 }
 </style>

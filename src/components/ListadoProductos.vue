@@ -2,15 +2,16 @@
     <div class="container">
         <div class="content">
             <p>Listado Productos</p>
-            <div v-for="(producto, index) in productos" :key="index">
+            <div v-for="(producto, index) in $store.productos.productos" :key="index">
                 <div v-if="producto.disponible">
-                    <CardProducto :nombre="producto.nombre" :foto="producto.foto" :precio="producto.precio" :descripcion="producto.descripcion" :detalles="producto.detalles"/>
-                    
+                    <CardProducto :id="producto.id" :nombre="producto.nombre" :foto="producto.foto"
+                        :precio="producto.precio" :descripcion="producto.descripcion" :detalles="producto.detalles" />
                 </div>
-                
+
 
             </div>
-            <button class="btn-primary">Comprar</button>
+            <h2>Carrrito ({{ $store.cart.items.length }} items)</h2>
+            <button class="btn btn-primary" @click="falta">Comprar</button>
         </div>
     </div>
 
@@ -19,47 +20,18 @@
 <script>
 import CardProducto from './CardProducto.vue';
 
-export default{
+export default {
     name: "ListadoProductos",
     data() {
         return {
-            productos:[
-                {
-                    nombre:"Sushi",
-                    foto:"./",
-                    precio:1000.1234,
-                    descripcion:"Lindo sushi comestible",
-                    detalles:"aqui van mas detalles",
-                    disponible:true
-                },
-                {
-                    nombre:"Helado",
-                    foto:"../assets/iphone13.png",
-                    precio:1000.99,
-                    descripcion:"Hermoso helado Frio",
-                    detalles:"aqui van mas detalles",
-                    disponible:true
-                },
-                {
-                    nombre:"Hamburguesa",
-                    foto:"../assets/iphone13.png",
-                    precio:1000,
-                    descripcion:"Preciosa hamburguesa caliente",
-                    detalles:"aqui van mas detalles",
-                    disponible:true
-                },
-                {
-                    nombre:"Esta no debe verse",
-                    foto:"../assets/iphone13.png",
-                    precio:1000,
-                    descripcion:"Preciosa hamburguesa caliente",
-                    detalles:"aqui van mas detalles",
-                    disponible:false
-                },
-            ]
+
         };
     },
-    methods: {},
+    methods: {
+        falta() {
+            alert("todavia no esta desarrollada esta parte, espere uno dias :D")
+        }
+    },
     computed: {},
     components: { CardProducto }
 }
@@ -68,14 +40,16 @@ export default{
 
 <style scoped>
 a {
-  color: #42b983;
+    color: #42b983;
 }
+
 label {
-  margin-left: 0.5em !important;
+    margin-left: 0.5em !important;
 }
+
 .content {
     height: 100%;
-    width: 50%;
+    width: 70%;
     align-self: center;
     background-color: purple;
     color: black;
